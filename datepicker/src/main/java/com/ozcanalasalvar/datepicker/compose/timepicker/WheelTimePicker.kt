@@ -42,24 +42,28 @@ fun WheelTimePicker(
     timeFormat: Int = TimeFormat.CLOCK_24H,
     startTime: Time = Time(DateUtils.getCurrentHour(), DateUtils.getCurrentMinute()),
     textSize: Int = 16,
+    startHour: Int = 0,
+    endHour: Int = -1,
+    minutesStepper: Int = 0,
     onTimeChanged: (Int, Int, String?) -> Unit = { _, _, _ -> },
     darkModeEnabled: Boolean = true,
 ) {
 
     var selectedTime by remember { mutableStateOf(startTime) }
 
-    val formats = listOf<String>("AM", "PM")
+    val formats = listOf("AM", "PM")
 
 
     val hours = mutableListOf<Int>().apply {
-        for (hour in 0..if (timeFormat == TimeFormat.CLOCK_24H) 23 else 12) {
+        for (hour in startHour.. if (endHour != -1) endHour else if (timeFormat == TimeFormat.CLOCK_24H) 23 else 12) {
             add(hour)
         }
     }
 
     val minutes = mutableListOf<Int>().apply {
         for (minute in 0..59) {
-            add(minute)
+            if (minutesStepper == 0 || minute % minutesStepper == 0)
+                add(minute)
         }
     }
     val fontSize = maxOf(13, minOf(19, textSize))

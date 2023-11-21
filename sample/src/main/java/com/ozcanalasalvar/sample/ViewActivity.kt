@@ -45,6 +45,9 @@ class ViewActivity : AppCompatActivity() {
             setTextSize(17)
             setTimeFormat(TimeFormat.CLOCK_12H)
             setTime(9, 12)
+            setStartHour(9)
+            setEndHour(16)
+            setMinutesStepper(30)
             setDarkModeEnabled(true)
             setTimeChangeListener(object : TimePicker.TimeChangeListener {
                 override fun onTimeChanged(hour: Int, minute: Int, timeFormat: String?) {
@@ -60,9 +63,12 @@ class ViewActivity : AppCompatActivity() {
             setTextSize(17)
             setTimeFormat(TimeFormat.CLOCK_24H)
             setTime(9, 12)
+            setStartHour(9)
+            setEndHour(16)
+            setMinutesStepper(30)
             setDarkModeEnabled(true)
             setTimeChangeListener(object : TimePicker.TimeChangeListener {
-                override fun onTimeSelected(hour: Int, minute: Int, timeFormat: String?) {
+                override fun onTimeChanged(hour: Int, minute: Int, timeFormat: String?) {
                     textTime24.text = "$hour:$minute ${timeFormat?:""}"
                 }
             })
@@ -105,6 +111,9 @@ class ViewActivity : AppCompatActivity() {
             .textSize(17)
             .setTime(12, 12)
             .setTimeFormat(TimeFormat.CLOCK_24H)
+            .setStartHour(9)
+            .setEndHour(12)
+            .setMinutesStepper(30)
             .darkModeEnabled(true)
             .listener(object : TimePickerPopup.TimeSelectListener {
                 override fun onTimeSelected(

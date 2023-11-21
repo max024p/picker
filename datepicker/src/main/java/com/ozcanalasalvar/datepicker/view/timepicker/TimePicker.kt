@@ -19,6 +19,9 @@ class TimePicker : LinearLayout {
     private var darkModeEnabled = true
     private var timeFormat = TimeFormat.CLOCK_24H
     private var startTime = Time(DateUtils.getCurrentHour(), DateUtils.getCurrentMinute())
+    private var startHour = -1
+    private var endHour = -1
+    private var minutesStepper = -1
 
     constructor(context: Context) : super(context) {
         init(context, null, 0)
@@ -63,6 +66,12 @@ class TimePicker : LinearLayout {
             } else if (attr == R.styleable.Picker_is24HourViewEnabled) {
                 timeFormat =
                     if (a.getBoolean(attr, true)) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+            } else if (attr == R.styleable.Picker_startHour) {
+                startHour = a.getInt(attr, -1)
+            } else if (attr == R.styleable.Picker_endHour) {
+                endHour = a.getInt(attr, -1)
+            } else if (attr == R.styleable.Picker_minutesStepper) {
+                minutesStepper = a.getInt(attr, -1)
             }
         }
         a.recycle()
@@ -89,6 +98,9 @@ class TimePicker : LinearLayout {
         pickerView?.darkModeEnabled = darkModeEnabled
         pickerView?.timeFormat = timeFormat
         pickerView?.startTime = startTime
+        pickerView?.startHour = startHour
+        pickerView?.endHour = endHour
+        pickerView?.minutesStepper = minutesStepper
 
         pickerView?.setTimeChangeListener(timeChangeListener)
     }
@@ -141,6 +153,21 @@ class TimePicker : LinearLayout {
 
     fun setTime(hour: Int, minute: Int) {
         startTime = Time(hour, minute)
+        setAttributes()
+    }
+
+    fun setStartHour(hour: Int) {
+        startHour = hour
+        setAttributes()
+    }
+
+    fun setEndHour(hour: Int) {
+        endHour = hour
+        setAttributes()
+    }
+
+    fun setMinutesStepper(stepper: Int) {
+        minutesStepper = stepper
         setAttributes()
     }
 }

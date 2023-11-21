@@ -11,5 +11,8 @@
             ....
             <enum name="dayFirst" value="1" />
         </attr>
+        <attr name="startHour" format="integer"/>
+        <attr name="endHour" format="integer"/>
+        <attr name="minutesStepper" format="integer"/>
     </declare-styleable>
 </resources>

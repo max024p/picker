@@ -99,6 +99,21 @@ class TimePickerPopup(private val context: Context) : BottomSheetDialogFragment(
             return this
         }
 
+        fun setStartHour(value: Int): Builder {
+            timePicker!!.setStartHour(value)
+            return this
+        }
+
+        fun setEndHour(value: Int): Builder {
+            timePicker!!.setEndHour(value)
+            return this
+        }
+
+        fun setMinutesStepper(value: Int): Builder {
+            timePicker!!.setMinutesStepper(value)
+            return this
+        }
+
         fun listener(listener: TimeSelectListener?): Builder {
             this.listener = listener
             return this

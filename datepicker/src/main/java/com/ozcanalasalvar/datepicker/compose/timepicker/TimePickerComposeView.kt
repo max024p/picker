@@ -22,7 +22,9 @@ class TimePickerComposeView @JvmOverloads constructor(
     private val darkModeEnabledState = mutableStateOf(true)
     private val timeFormatState = mutableStateOf(TimeFormat.CLOCK_24H)
     private val startTimeState = mutableStateOf(Time(0, 0, "PM"))
-
+    private val startHourState = mutableStateOf(0)
+    private val endHourState = mutableStateOf(-1)
+    private val minutesStepperState = mutableStateOf(0)
 
     var offset: Int
         get() = offsetState.value
@@ -59,6 +61,23 @@ class TimePickerComposeView @JvmOverloads constructor(
             startTimeState.value = value
         }
 
+    var startHour: Int
+        get() = startHourState.value
+        set(value) {
+            startHourState.value = value
+        }
+
+    var endHour: Int
+        get() = endHourState.value
+        set(value) {
+            endHourState.value = value
+        }
+
+    var minutesStepper: Int
+        get() = minutesStepperState.value
+        set(value) {
+            minutesStepperState.value = value
+        }
 
     private var timeChangeListener: TimePicker.TimeChangeListener? = null
     fun setTimeChangeListener(dataSelectListener: TimePicker.TimeChangeListener?) {
@@ -78,6 +97,9 @@ class TimePickerComposeView @JvmOverloads constructor(
             timeFormat = timeFormatState.value,
             startTime = startTimeState.value,
             textSize = textSizeState.value,
+            startHour = startHourState.value,
+            endHour = endHourState.value,
+            minutesStepper = minutesStepperState.value,
             darkModeEnabled = darkModeEnabledState.value,
             onTimeChanged = { hour, minute, format ->
                 timeChangeListener?.onTimeChanged(hour, minute, format)
