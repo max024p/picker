@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -76,7 +77,7 @@ fun WheelTimePicker(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
-            .background(if (darkModeEnabled) PickerTheme.colors.primary else colorLightPrimary),
+            .background(if (darkModeEnabled) PickerTheme.colors.primary else Color.Transparent),
         contentAlignment = Alignment.Center
     ) {
 
