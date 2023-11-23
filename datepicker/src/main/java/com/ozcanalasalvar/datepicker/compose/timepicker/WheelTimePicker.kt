@@ -28,7 +28,6 @@ import com.google.android.material.timepicker.TimeFormat
 import com.ozcanalasalvar.datepicker.compose.component.SelectorView
 import com.ozcanalasalvar.datepicker.model.Time
 import com.ozcanalasalvar.datepicker.ui.theme.PickerTheme
-import com.ozcanalasalvar.datepicker.ui.theme.colorLightPrimary
 import com.ozcanalasalvar.datepicker.ui.theme.colorLightTextPrimary
 import com.ozcanalasalvar.datepicker.ui.theme.lightPallet
 import com.ozcanalasalvar.datepicker.utils.DateUtils
@@ -93,7 +92,7 @@ fun WheelTimePicker(
 
             WheelView(modifier = Modifier.weight(3f),
                 itemSize = DpSize(150.dp, height),
-                selection = 0,
+                selection = hours.indexOfFirst { it == selectedTime.hour }.takeIf { it != -1 } ?: 0,
                 itemCount = hours.size,
                 rowOffset = offset,
                 selectorOption = SelectorOptions().copy(selectEffectEnabled = selectorEffectEnabled, enabled = false),
@@ -108,18 +107,20 @@ fun WheelTimePicker(
                         fontSize = fontSize.sp,
                         color = if (darkModeEnabled) PickerTheme.colors.textPrimary else colorLightTextPrimary
                     )
-                })
+                },
+                isEndless = false,)
 
 
             WheelView(modifier = Modifier.weight(3f),
                 itemSize = DpSize(150.dp, height),
-                selection = 0,
+                selection = minutes.indexOfFirst { it == selectedTime.minute }.takeIf { it != -1 } ?: 0,
                 itemCount = minutes.size,
                 rowOffset = offset,
                 selectorOption = SelectorOptions().copy(selectEffectEnabled = selectorEffectEnabled, enabled = false),
                 onFocusItem = {
                     selectedTime = selectedTime.copy(minute = minutes[it])
                 },
+                isEndless = false,
                 content = {
                     Text(
                         text = if (minutes[it] < 10) "0${minutes[it]}" else "${minutes[it]}",
@@ -159,7 +160,7 @@ fun WheelTimePicker(
                 .fillMaxSize()
                 .background(
                     brush = Brush.verticalGradient(
-                        colors = if (darkModeEnabled) PickerTheme.pallets else lightPallet
+                        colors = if (darkModeEnabled) PickerTheme.pallets else listOf(Color.Transparent)
                     )
                 ),
         ) {}

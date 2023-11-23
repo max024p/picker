@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.google.android.material.timepicker.TimeFormat
 import com.ozcanalasalvar.datepicker.compose.datepicker.WheelDatePicker
 import com.ozcanalasalvar.datepicker.compose.timepicker.WheelTimePicker
+import com.ozcanalasalvar.datepicker.model.Time
 
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,15 +50,22 @@ fun Content() {
         })
 
         Spacer(modifier = Modifier.height(20.dp))
-        WheelTimePicker(offset = 3, onTimeChanged = { hour, minute, format ->
-            Log.d("SelectedDate", "$hour : $minute  $format")
-        })
-        Spacer(modifier = Modifier.height(20.dp))
-
-        WheelTimePicker(timeFormat = TimeFormat.CLOCK_12H,
+        WheelTimePicker(
+            startTime = Time(7, 30),
+            offset = 3,
+            minutesStepper = 30,
             onTimeChanged = { hour, minute, format ->
                 Log.d("SelectedDate", "$hour : $minute  $format")
-            })
+            }
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+
+        WheelTimePicker(
+            timeFormat = TimeFormat.CLOCK_12H,
+            onTimeChanged = { hour, minute, format ->
+                Log.d("SelectedDate", "$hour : $minute  $format")
+            }
+        )
     }
 }
 

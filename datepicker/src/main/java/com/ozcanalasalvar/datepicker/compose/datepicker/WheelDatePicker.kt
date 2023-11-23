@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpSize
@@ -33,7 +34,6 @@ import com.ozcanalasalvar.datepicker.utils.withMonth
 import com.ozcanalasalvar.datepicker.utils.withYear
 import com.ozcanalasalvar.datepicker.model.Date
 import com.ozcanalasalvar.datepicker.ui.theme.PickerTheme
-import com.ozcanalasalvar.datepicker.ui.theme.colorLightPrimary
 import com.ozcanalasalvar.datepicker.ui.theme.colorLightTextPrimary
 import com.ozcanalasalvar.datepicker.ui.theme.lightPallet
 import com.ozcanalasalvar.datepicker.utils.DateUtils
@@ -76,7 +76,7 @@ fun WheelDatePicker(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
-            .background(if (darkModeEnabled) PickerTheme.colors.primary else colorLightPrimary),
+            .background(if (darkModeEnabled) PickerTheme.colors.primary else Color.Transparent),
         contentAlignment = Alignment.Center
     ) {
 

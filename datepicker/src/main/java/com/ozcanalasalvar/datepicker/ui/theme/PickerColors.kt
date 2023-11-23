@@ -57,7 +57,7 @@ class PickerColors(
     }
 }
 
-val colorLightPrimary = Color(0xFFFFFFFF)
+val colorLightPrimary = Color.Transparent
 val colorLightTextPrimary = Color(0xFF000000)
 val colorLightTextSecondary = Color(0xFF6C727A)
 val colorLightBackground = Color(0xFFFFFFFF)
