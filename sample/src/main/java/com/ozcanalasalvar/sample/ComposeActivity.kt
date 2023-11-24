@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.google.android.material.timepicker.TimeFormat
 import com.ozcanalasalvar.datepicker.compose.datepicker.WheelDatePicker
 import com.ozcanalasalvar.datepicker.compose.timepicker.WheelTimePicker
-import com.ozcanalasalvar.datepicker.model.Time
 
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,33 +38,26 @@ fun Content() {
             .verticalScroll(rememberScrollState())
     ) {
         // A surface container using the 'background' color from the theme
-        WheelDatePicker(onDateChanged = { day, month, year, date ->
+        WheelDatePicker(onDateSelected = { day, month, year, date ->
             Log.d("SelectedDate", "$day / $month / $year")
         })
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        WheelDatePicker(offset = 3, textSize = 16, onDateChanged = { day, month, year, date ->
+        WheelDatePicker(offset = 3, textSize = 16, onDateSelected = { day, month, year, date ->
             Log.d("SelectedDate", "$day / $month / $year")
         })
 
         Spacer(modifier = Modifier.height(20.dp))
-        WheelTimePicker(
-            startTime = Time(7, 30),
-            offset = 3,
-            minutesStepper = 30,
-            onTimeChanged = { hour, minute, format ->
-                Log.d("SelectedDate", "$hour : $minute  $format")
-            }
-        )
+        WheelTimePicker(offset = 3, onTimeSelected = { hour, minute, format ->
+            Log.d("SelectedDate", "$hour : $minute  $format")
+        })
         Spacer(modifier = Modifier.height(20.dp))
 
-        WheelTimePicker(
-            timeFormat = TimeFormat.CLOCK_12H,
-            onTimeChanged = { hour, minute, format ->
+        WheelTimePicker(timeFormat = TimeFormat.CLOCK_12H,
+            onTimeSelected = { hour, minute, format ->
                 Log.d("SelectedDate", "$hour : $minute  $format")
-            }
-        )
+            })
     }
 }
 
